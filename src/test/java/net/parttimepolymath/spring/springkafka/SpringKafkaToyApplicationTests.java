@@ -1,4 +1,4 @@
-package net.parttimepolymath.spring.awskafka;
+package net.parttimepolymath.spring.springkafka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
