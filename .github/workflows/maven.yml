@@ -21,4 +21,4 @@ jobs:
       with:
         java-version: 17.0.5
     - name: Build with Maven
-      run: cd springboot && mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml
