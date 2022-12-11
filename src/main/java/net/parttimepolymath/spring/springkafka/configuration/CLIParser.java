@@ -1,14 +1,21 @@
 package net.parttimepolymath.spring.springkafka.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.NumberUtils;
 
 import java.util.List;
 
 /**
  * helper class to parse the command line arguments and set up the runtime configuration.
  */
+@Configuration
 public class CLIParser {
+
+    @Value("${default.count}")
+    private long defaultCount;
     private static final String help = """
             usage:
              --help                        print this help message
@@ -40,8 +47,15 @@ public class CLIParser {
             System.err.println(help);
             return false;
         }
+
         if (args.containsOption("producer")) {
             runtimeConfig.setMode(RuntimeConfig.Mode.PRODUCER);
+            try {
+                runtimeConfig.setCount(parseCount(args));
+            } catch (ConfigurationException e) {
+                System.err.println(help);
+                return false;
+            }
         } else if (args.containsOption("consumer")) {
             runtimeConfig.setMode(RuntimeConfig.Mode.CONSUMER);
         } else {
@@ -52,5 +66,27 @@ public class CLIParser {
         runtimeConfig.setBootstraps(args.getOptionValues("bootstrap-server"));
 
         return true;
+    }
+
+    /**
+     * work out how many messages to produce based on command line.
+     * @param args the command line to parse.
+     * @return the number of messages to produce, which defaults to default.count if not specified
+     * @throws  ConfigurationException if we can't parse at all
+     */
+    private long parseCount(final ApplicationArguments args) throws ConfigurationException {
+        if (args.containsOption("count")) {
+            if (args.getOptionValues("count").isEmpty()) {
+                throw new ConfigurationException("Count needs a value specified");
+            }
+
+            try {
+                return NumberUtils.parseNumber(args.getOptionValues("count").get(0), Long.class);
+            } catch (IllegalArgumentException ex) {
+                throw new ConfigurationException(ex);
+            }
+        } else {
+            return defaultCount;
+        }
     }
 }

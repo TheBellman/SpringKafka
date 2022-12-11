@@ -43,4 +43,26 @@ class CLIParserTest {
         assertFalse(result);
     }
 
+    @Test
+    void parseCount() {
+        ApplicationArguments args = new DefaultApplicationArguments("--producer", "--count=500", "--bootstrap-server=localhost:9092");
+        boolean result = instance.parseArgs(args);
+        assertTrue(result);
+        assertEquals(500, config.getCount());
+    }
+
+    @Test
+    void parseCountNoCount() {
+        ApplicationArguments args = new DefaultApplicationArguments("--producer", "--count", "--bootstrap-server=localhost:9092");
+        boolean result = instance.parseArgs(args);
+        assertFalse(result);
+    }
+
+    @Test
+    void parseCountBadCount() {
+        ApplicationArguments args = new DefaultApplicationArguments("--producer", "--count=foo", "--bootstrap-server=localhost:9092");
+        boolean result = instance.parseArgs(args);
+        assertFalse(result);
+    }
+
 }
