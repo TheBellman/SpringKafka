@@ -3,6 +3,8 @@ package net.parttimepolymath.spring.springkafka.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 
+import java.util.List;
+
 /**
  * helper class to parse the command line arguments and set up the runtime configuration.
  */
@@ -32,6 +34,8 @@ public class CLIParser {
      * @return true if the arguments were good, false otherwise
      */
     public boolean parseArgs(final ApplicationArguments args) {
+        boolean hasArg = args.containsOption("bootstrap-server");
+        List<String> bs = args.getOptionValues("bootstrap-server");
         if (args.containsOption("help") || !args.containsOption("bootstrap-server") || args.getOptionValues("bootstrap-server").isEmpty()) {
             System.err.println(help);
             return false;
