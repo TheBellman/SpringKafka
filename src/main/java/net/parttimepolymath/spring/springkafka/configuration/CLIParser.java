@@ -11,10 +11,8 @@ import java.util.List;
 /**
  * helper class to parse the command line arguments and set up the runtime configuration.
  */
-@Configuration
 public class CLIParser {
 
-    @Value("${default.count}")
     private long defaultCount;
     private static final String help = """
             usage:
@@ -29,10 +27,13 @@ public class CLIParser {
 
     /**
      * primary constructor
+     *
      * @param runtimeConfig the runtime config that will be set up.
+     * @param defaultCount the default count that is used if nothing is provided
      */
-    public CLIParser(final @Autowired RuntimeConfig runtimeConfig) {
+    public CLIParser(final @Autowired RuntimeConfig runtimeConfig, final long defaultCount) {
         this.runtimeConfig = runtimeConfig;
+        this.defaultCount = defaultCount;
     }
 
     /**
@@ -43,7 +44,7 @@ public class CLIParser {
     public boolean parseArgs(final ApplicationArguments args) {
         boolean hasArg = args.containsOption("bootstrap-server");
         List<String> bs = args.getOptionValues("bootstrap-server");
-        if (args.containsOption("help") || !args.containsOption("bootstrap-server") || args.getOptionValues("bootstrap-server").isEmpty()) {
+        if (args.containsOption("help") || !args.containsOption("bootstrap-server")) {
             System.err.println(help);
             return false;
         }
@@ -63,9 +64,40 @@ public class CLIParser {
             return false;
         }
 
-        runtimeConfig.setBootstraps(args.getOptionValues("bootstrap-server"));
+        try {
+            runtimeConfig.setBootstraps(validateBootstraps(args.getOptionValues("bootstrap-server")));
+        } catch (ConfigurationException e) {
+            System.err.println(help);
+            return false;
+        }
 
         return true;
+    }
+
+    /**
+     * verify that all the items in the bootstrap list are of the form host:port, and that the list is not empty
+     * @param bootstrap the list of bootstrap options to check
+     * @return the provided list
+     * @throws ConfigurationException if the items in the list are not good, or the list is empty.
+     */
+    private List<String> validateBootstraps(final List<String> bootstrap) throws ConfigurationException {
+        if ( bootstrap.isEmpty()) {
+            throw new ConfigurationException("expected bootstraps to be specified");
+        }
+
+        for (String s : bootstrap) {
+            String[] parts = s.split(":");
+            if (parts.length != 2) {
+                throw new ConfigurationException("expected the bootstrap to be host:port");
+            }
+
+            try {
+                NumberUtils.parseNumber(parts[1], Long.class);
+            } catch (IllegalArgumentException ex) {
+                throw new ConfigurationException("expected the bootstrap to be host:port");
+            }
+        }
+        return bootstrap;
     }
 
     /**
