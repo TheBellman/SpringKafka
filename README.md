@@ -40,7 +40,71 @@ all being well, after a few seconds or minutes you should see something like:
 ```
 
 ## Usage
-To be completed
+Executing with no other parameters will produce a help message
+
+```shell
+% java -jar target/springkafka-1.0-SNAPSHOT.jar           
+11:55:19.201 [main] INFO net.parttimepolymath.spring.springkafka.SpringKafkaToyApplication - Application starting
+
+======================================================================
+| Spring Kafka Toy - springkafka:1.0-SNAPSHOT
+| built   : 2022-12-11T11:54:46Z
+======================================================================
+
+2022-12-11T11:55:19.462Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Starting SpringKafkaToyApplication v1.0-SNAPSHOT using Java 17.0.5 with PID 30369 (/Users/robert/Projects/Java/SpringKafka/target/springkafka-1.0-SNAPSHOT.jar started by robert in /Users/robert/Projects/Java/SpringKafka)
+2022-12-11T11:55:19.463Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : The following 1 profile is active: "development"
+2022-12-11T11:55:19.685Z  INFO 30369 --- [           main] n.p.spring.springkafka.VersionConsumer   : Version details : Version(name=Spring Kafka Toy, version=1.0-SNAPSHOT, build=2022-12-11T11:54:46Z, profile=development)
+2022-12-11T11:55:19.714Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Started SpringKafkaToyApplication in 0.449 seconds (process running for 0.648)
+usage:
+ --help                        print this help message
+ --bootstrap-server <broker>   initial server to connect to (e.g. localhost:9092) [REQUIRED]
+ --consumer                    run as a data consumer
+ --producer                    run as a data producer
+ --count <count>               number of messages to produce
+ --topic                       topic name used
+
+2022-12-11T11:55:19.716Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Application ending
+```
+
+and the same if `--help` is specified:
+
+```shell
+% java -jar target/springkafka-1.0-SNAPSHOT.jar --help           
+11:55:19.201 [main] INFO net.parttimepolymath.spring.springkafka.SpringKafkaToyApplication - Application starting
+
+======================================================================
+| Spring Kafka Toy - springkafka:1.0-SNAPSHOT
+| built   : 2022-12-11T11:54:46Z
+======================================================================
+
+2022-12-11T11:55:19.462Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Starting SpringKafkaToyApplication v1.0-SNAPSHOT using Java 17.0.5 with PID 30369 (/Users/robert/Projects/Java/SpringKafka/target/springkafka-1.0-SNAPSHOT.jar started by robert in /Users/robert/Projects/Java/SpringKafka)
+2022-12-11T11:55:19.463Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : The following 1 profile is active: "development"
+2022-12-11T11:55:19.685Z  INFO 30369 --- [           main] n.p.spring.springkafka.VersionConsumer   : Version details : Version(name=Spring Kafka Toy, version=1.0-SNAPSHOT, build=2022-12-11T11:54:46Z, profile=development)
+2022-12-11T11:55:19.714Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Started SpringKafkaToyApplication in 0.449 seconds (process running for 0.648)
+usage:
+ --help                        print this help message
+ --bootstrap-server <broker>   initial server to connect to (e.g. localhost:9092) [REQUIRED]
+ --consumer                    run as a data consumer
+ --producer                    run as a data producer
+ --count <count>               number of messages to produce
+ --topic                       topic name used
+
+2022-12-11T11:55:19.716Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Application ending
+```
+
+More typically, you will either want it to execute as the message producer:
+
+```shell
+% java -jar target/springkafka-1.0-SNAPSHOT.jar --producer --bootstrap-server=localhost:9092 --count=1000
+```
+
+or message consumer:
+
+```shell
+% java -jar target/springkafka-1.0-SNAPSHOT.jar --consumer --bootstrap-server=localhost:9092
+```
+
+For the producer, if `count` is not specified, a default number of messages will be produced. `count` is ignored for the consumer.
 
 ## ToDo
 To be completed

@@ -15,9 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @NotThreadSafe
 public class RuntimeConfig {
-    public static enum Mode {CONSUMER, PRODUCER};
+
+    public enum Mode {CONSUMER, PRODUCER};
 
     private Mode mode;
     private List<String> bootstraps;
-
+    private long count;
 }
