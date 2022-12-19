@@ -24,7 +24,6 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic targetTopic() {
-        log.info("Calling KafkaTopicConfig.targetTopic");
         return TopicBuilder.name(targetTopic).partitions(1).replicas(1).build();
     }
 }

@@ -3,8 +3,6 @@ package net.parttimepolymath.spring.springkafka.configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RuntimeConfigTest {
