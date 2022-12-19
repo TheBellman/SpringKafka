@@ -24,6 +24,8 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
 
     private RuntimeConfig runtimeConfig;
 
+    private Producer producer;
+
     @Autowired
     public void setParser(final CLIParser parser) {
         this.parser = parser;
@@ -32,6 +34,11 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
     @Autowired
     public void setRuntimeConfig(final RuntimeConfig runtimeConfig) {
         this.runtimeConfig = runtimeConfig;
+    }
+
+    @Autowired
+    public void setProducer(final Producer producer) {
+        this.producer = producer;
     }
 
     public static void main(String[] args) {
@@ -47,5 +54,9 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
         }
 
         log.info("Good arguments! will run now with {}", runtimeConfig);
+
+        if (runtimeConfig.getMode() == RuntimeConfig.Mode.PRODUCER) {
+            producer.execute(runtimeConfig.getCount());
+        }
     }
 }

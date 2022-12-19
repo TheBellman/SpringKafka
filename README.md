@@ -57,11 +57,9 @@ Executing with no other parameters will produce a help message
 2022-12-11T11:55:19.714Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Started SpringKafkaToyApplication in 0.449 seconds (process running for 0.648)
 usage:
  --help                        print this help message
- --bootstrap-server <broker>   initial server to connect to (e.g. localhost:9092) [REQUIRED]
  --consumer                    run as a data consumer
  --producer                    run as a data producer
  --count <count>               number of messages to produce
- --topic                       topic name used
 
 2022-12-11T11:55:19.716Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Application ending
 ```
@@ -83,11 +81,9 @@ and the same if `--help` is specified:
 2022-12-11T11:55:19.714Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Started SpringKafkaToyApplication in 0.449 seconds (process running for 0.648)
 usage:
  --help                        print this help message
- --bootstrap-server <broker>   initial server to connect to (e.g. localhost:9092) [REQUIRED]
  --consumer                    run as a data consumer
  --producer                    run as a data producer
  --count <count>               number of messages to produce
- --topic                       topic name used
 
 2022-12-11T11:55:19.716Z  INFO 30369 --- [           main] n.p.s.s.SpringKafkaToyApplication        : Application ending
 ```
@@ -95,16 +91,22 @@ usage:
 More typically, you will either want it to execute as the message producer:
 
 ```shell
-% java -jar target/springkafka-1.0-SNAPSHOT.jar --producer --bootstrap-server=localhost:9092 --count=1000
+% java -jar target/springkafka-1.0-SNAPSHOT.jar --producer --count=1000
 ```
 
 or message consumer:
 
 ```shell
-% java -jar target/springkafka-1.0-SNAPSHOT.jar --consumer --bootstrap-server=localhost:9092
+% java -jar target/springkafka-1.0-SNAPSHOT.jar --consumer
 ```
 
 For the producer, if `count` is not specified, a default number of messages will be produced. `count` is ignored for the consumer.
+
+The bootstrap servers defaults to `localhost:9092`, but you can override this using (e.g.) :
+
+```shell
+% java -jar target/springkafka-1.0-SNAPSHOT.jar --consumer --spring.kafka.bootstrap-servers=example.net:9092
+```
 
 ## ToDo
 To be completed
