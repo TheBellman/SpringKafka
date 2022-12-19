@@ -4,15 +4,13 @@ package net.parttimepolymath.spring.springkafka.configuration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import static net.parttimepolymath.spring.springkafka.configuration.Version.UNKNOWN;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Note that we have to explicitly use the EnableConfigurationProperties to trigger the properties passing behaviour,
- * but that this is on by default in the application itself.
- */
 @SpringBootTest
+@ActiveProfiles({ "test" })
 class VersionTest {
 
     @Autowired

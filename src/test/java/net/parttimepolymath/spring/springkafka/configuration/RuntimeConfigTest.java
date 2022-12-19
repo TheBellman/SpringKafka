@@ -24,25 +24,10 @@ class RuntimeConfigTest {
     }
 
     @Test
-    void getBootstraps() {
-        assertNull(instance.getBootstraps());
-        instance.setBootstraps(Collections.singletonList("fred"));
-        assertEquals("fred", instance.getBootstraps().get(0));
-        assertEquals(1, instance.getBootstraps().size());
-    }
-
-    @Test
     void setMode() {
         instance.setMode(RuntimeConfig.Mode.CONSUMER);
         assertEquals(RuntimeConfig.Mode.CONSUMER, instance.getMode());
         instance.setMode(RuntimeConfig.Mode.PRODUCER);
         assertEquals(RuntimeConfig.Mode.PRODUCER, instance.getMode());
-    }
-
-    @Test
-    void setBootstraps() {
-        instance.setBootstraps(Collections.singletonList("fred"));
-        assertEquals("fred", instance.getBootstraps().get(0));
-        assertEquals(1, instance.getBootstraps().size());
     }
 }

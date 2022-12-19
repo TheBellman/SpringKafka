@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.jcip.annotations.NotThreadSafe;
 
-import java.util.List;
-
 /**
  * Simple Pojo to contain the configuration options derived from the command line.
  */
@@ -19,6 +17,5 @@ public class RuntimeConfig {
     public enum Mode {CONSUMER, PRODUCER};
 
     private Mode mode;
-    private List<String> bootstraps;
     private long count;
 }
