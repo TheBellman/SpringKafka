@@ -40,6 +40,7 @@ public class ProducerImpl implements Producer {
                 .limit(count)
                 .map(body -> new ProducerRecord<>(targetTopic, keyGenerator.getKey(), body))
                 .forEach(this::sendToKafka);
+        producerTemplate.flush();
         log.info("Success count = {}. error count = {}", successCounter.get(), errorCounter.get());
     }
 
@@ -47,18 +48,11 @@ public class ProducerImpl implements Producer {
         CompletableFuture<SendResult<String, String>> future = producerTemplate.send(record);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
-                handleSuccess(record.value());
+                successCounter.incrementAndGet();
             } else {
-                handleFailure(record.value(), record, ex);
+                log.error("Failed to send {} due to {}", record.value(), ex.getMessage());
+                errorCounter.incrementAndGet();
             }
         });
-    }
-
-    private void handleFailure(final String value, final ProducerRecord<String, String> record, final Throwable ex) {
-        log.error("Failed to send {} due to {}", value, ex.getMessage());
-    }
-
-    private void handleSuccess(final String value) {
-        successCounter.incrementAndGet();
     }
 }
