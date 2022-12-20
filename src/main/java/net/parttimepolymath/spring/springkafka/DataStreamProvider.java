@@ -5,6 +5,9 @@ import java.util.stream.Stream;
 /**
  * allow injection of the source of our data, with the data being provided as a stream
  * @param <V> the type of data in our stream.
+ *
+ * @author Robert Hook
+ * @since 2022-12-20
  */
 public interface DataStreamProvider<V> {
     /**

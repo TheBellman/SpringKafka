@@ -24,7 +24,7 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
 
     private RuntimeConfig runtimeConfig;
 
-    private Producer producer;
+    private Producer<String, String> producer;
 
     @Autowired
     public void setParser(final CLIParser parser) {
@@ -37,7 +37,7 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
     }
 
     @Autowired
-    public void setProducer(final Producer producer) {
+    public void setProducer(final Producer<String, String> producer) {
         this.producer = producer;
     }
 

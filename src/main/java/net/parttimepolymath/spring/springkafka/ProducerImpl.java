@@ -11,9 +11,15 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Implementation of the producer that just pumps out a set random names with a UUID string as key.
+ *
+ * @author Robert Hook
+ * @since 2022-12-20
+ */
 @Component
 @Slf4j
-public class ProducerImpl implements Producer {
+public class ProducerImpl implements Producer<String, String> {
 
     @Value("${topic.name}")
     private String targetTopic;

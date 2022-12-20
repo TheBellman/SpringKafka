@@ -6,6 +6,9 @@ import org.springframework.util.NumberUtils;
 
 /**
  * helper class to parse the command line arguments and set up the runtime configuration.
+ *
+ * @author Robert Hook
+ * @since 2022-12-20
  */
 public class CLIParser {
 
