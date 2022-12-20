@@ -4,6 +4,8 @@ import java.util.UUID;
 
 /**
  * Key generator that returns a random UUID as a string.
+ * @author Robert Hook
+ * @since 2022-12-20
  */
 public class UUIDKeyGenerator implements KeyGenerator<String> {
     @Override

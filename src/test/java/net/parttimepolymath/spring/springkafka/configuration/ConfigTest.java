@@ -27,24 +27,6 @@ class ConfigTest {
         assertNotNull(instance.cliParser(rc));
     }
 
-    // TODO this falls over with some internal failure inside DefaultKafkaProducerFactory
-//    @Test
-//    void producerFactory() {
-//        assertNotNull(instance.producerFactory());
-//    }
-
-    @Test
-    void producerConfigs() {
-        assertNotNull(instance.producerConfigs());
-        assertFalse(instance.producerConfigs().isEmpty());
-    }
-
-    // TODO this falls over with some internal failure inside DefaultKafkaProducerFactory
-//    @Test
-//    void producerTemplate() {
-//    assertNotNull(instance.producerTemplate());
-//    }
-
     @Test
     void streamProvider() {
         assertNotNull(instance.streamProvider());

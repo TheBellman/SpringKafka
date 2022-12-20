@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Report some version information during startup of the application.
+ * @author Robert Hook
+ * @since 2022-12-20
  */
 @Component
 @Slf4j

@@ -13,7 +13,11 @@ import org.springframework.kafka.config.TopicBuilder;
  * Note that we use the profile ID we inherit from the pom.xml via application.properties to
  * ensure that the tests - which are marked as using the test profile - don't cause this to fire
  * and try to connect to a cluster
+ *
+ * @author Robert Hook
+ * @since 2022-12-20
  */
+
 @Slf4j
 @Configuration
 @Profile({ "development" })
