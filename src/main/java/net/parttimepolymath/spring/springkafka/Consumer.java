@@ -1,6 +1,8 @@
 package net.parttimepolymath.spring.springkafka;
 
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+
 /**
  * consumer interface used to "springify" injection.
  * @param <K> the type of key in our stream.
@@ -11,4 +13,5 @@ package net.parttimepolymath.spring.springkafka;
  */
 public interface Consumer<K, V> {
     void start();
+    void listen(ConsumerRecord<K, V> record);
 }
