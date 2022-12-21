@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Service
 @Slf4j
-public class Producer<K, V> {
+public class ProducerService<K, V> {
     @Value("${topic.name}")
     private String targetTopic;
     private final AtomicLong successCounter = new AtomicLong();
@@ -30,9 +30,9 @@ public class Producer<K, V> {
     // without building our own, Spring Boot will automagically build one for us
     private final KafkaTemplate<K, V> producerTemplate;
 
-    public Producer(@Autowired final KeyGenerator<K> keyGenerator,
-                    @Autowired final DataStreamProvider<V> dataStreamProvider,
-                    @Autowired KafkaTemplate<K, V> producerTemplate) {
+    public ProducerService(@Autowired final KeyGenerator<K> keyGenerator,
+                           @Autowired final DataStreamProvider<V> dataStreamProvider,
+                           @Autowired KafkaTemplate<K, V> producerTemplate) {
         this.keyGenerator = keyGenerator;
         this.dataStreamProvider = dataStreamProvider;
         this.producerTemplate = producerTemplate;

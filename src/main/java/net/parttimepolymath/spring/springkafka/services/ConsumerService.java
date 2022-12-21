@@ -18,12 +18,12 @@ import java.util.Objects;
  */
 @Service
 @Slf4j
-public class Consumer<K, V> {
+public class ConsumerService<K, V> {
     @Value("${listener.id}")
     private String listenerId;
     private final KafkaListenerEndpointRegistry registry;
 
-    public Consumer(@Autowired final KafkaListenerEndpointRegistry registry) {
+    public ConsumerService(@Autowired final KafkaListenerEndpointRegistry registry) {
         this.registry = registry;
     }
 
