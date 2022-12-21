@@ -12,7 +12,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 /**
  * top level application starter class.
  *
@@ -28,7 +27,8 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
     private final ProducerService<String, Customer> producerService;
     private final ConsumerService<String, Customer> consumerService;
 
-    public SpringKafkaToyApplication(@Autowired final CLIParser parser, @Autowired final RuntimeConfig runtimeConfig,
+    public SpringKafkaToyApplication(@Autowired final CLIParser parser,
+                                     @Autowired final RuntimeConfig runtimeConfig,
                                      @Autowired final ProducerService<String, Customer> producerService,
                                      @Autowired final ConsumerService<String, Customer> consumerService) {
         this.parser = parser;

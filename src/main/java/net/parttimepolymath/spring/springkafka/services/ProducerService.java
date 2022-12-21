@@ -38,6 +38,10 @@ public class ProducerService<K, V> {
         this.producerTemplate = producerTemplate;
     }
 
+    /**
+     * send a specified number of messages to the target topic.
+     * @param count the number of messages to send.
+     */
     public void execute(long count) {
         log.info("executing with {}", count);
         successCounter.set(0);
@@ -48,6 +52,10 @@ public class ProducerService<K, V> {
         log.info("Success count = {}. error count = {}", successCounter.get(), errorCounter.get());
     }
 
+    /**
+     * this method does the actual sending. note this is very simplistic in it's error handling
+     * @param record the record to send.
+     */
     private void sendToKafka(final ProducerRecord<K, V> record) {
         CompletableFuture<SendResult<K, V>> future = producerTemplate.send(record);
         future.whenComplete((result, ex) -> {
