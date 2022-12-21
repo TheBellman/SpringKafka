@@ -18,11 +18,4 @@ class ConfigTest {
     void runtimeConfig() {
         assertNotNull(instance.runtimeConfig());
     }
-
-    @Test
-    void cliParser() {
-        RuntimeConfig rc = instance.runtimeConfig();
-        assertNotNull(rc);
-        assertNotNull(instance.cliParser(rc));
-    }
 }

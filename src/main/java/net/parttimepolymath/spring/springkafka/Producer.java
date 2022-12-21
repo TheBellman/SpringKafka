@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Implementation of the producer that just pumps out a set random names with a UUID string as key.
+ * Producer used to write to Kafka
  *
  * @author Robert Hook
  * @since 2022-12-20
  */
-@Component
+@Service
 @Slf4j
 public class Producer<K, V> {
     @Value("${topic.name}")
@@ -38,7 +38,6 @@ public class Producer<K, V> {
         this.producerTemplate = producerTemplate;
     }
 
-    //    @Override
     public void execute(long count) {
         log.info("executing with {}", count);
         successCounter.set(0);

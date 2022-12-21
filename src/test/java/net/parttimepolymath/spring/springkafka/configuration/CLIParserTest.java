@@ -3,6 +3,7 @@ package net.parttimepolymath.spring.springkafka.configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.DefaultApplicationArguments;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +16,8 @@ class CLIParserTest {
     @BeforeEach
     void setUp() {
         config = new RuntimeConfig();
-        instance = new CLIParser(config, DEFAULT_COUNT);
+        instance = new CLIParser(config);
+        instance.setDefaultCount(DEFAULT_COUNT);
     }
 
     @Test
