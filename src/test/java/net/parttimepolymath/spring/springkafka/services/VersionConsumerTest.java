@@ -1,4 +1,4 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
 
 import net.parttimepolymath.spring.springkafka.configuration.Version;
 import org.junit.jupiter.api.BeforeEach;

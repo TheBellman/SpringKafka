@@ -1,5 +1,7 @@
-package net.parttimepolymath.spring.springkafka.configuration;
+package net.parttimepolymath.spring.springkafka.services;
 
+import net.parttimepolymath.spring.springkafka.configuration.ConfigurationException;
+import net.parttimepolymath.spring.springkafka.configuration.RuntimeConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;

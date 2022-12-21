@@ -1,4 +1,4 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
 
 import org.springframework.stereotype.Service;
 

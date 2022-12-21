@@ -1,8 +1,10 @@
 package net.parttimepolymath.spring.springkafka;
 
 import lombok.extern.slf4j.Slf4j;
-import net.parttimepolymath.spring.springkafka.configuration.CLIParser;
+import net.parttimepolymath.spring.springkafka.services.CLIParser;
 import net.parttimepolymath.spring.springkafka.configuration.RuntimeConfig;
+import net.parttimepolymath.spring.springkafka.services.Consumer;
+import net.parttimepolymath.spring.springkafka.services.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
