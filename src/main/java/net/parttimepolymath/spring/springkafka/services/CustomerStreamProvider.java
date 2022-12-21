@@ -1,8 +1,10 @@
 package net.parttimepolymath.spring.springkafka.services;
 
 import com.github.javafaker.Faker;
+import net.parttimepolymath.spring.springkafka.avro.Customer;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.stream.Stream;
 
 /**
@@ -11,11 +13,11 @@ import java.util.stream.Stream;
  * @since 2022-12-20
  */
 @Service
-public class StringStreamProvider implements DataStreamProvider<String> {
+public class CustomerStreamProvider implements DataStreamProvider<Customer> {
     private static final Faker faker = new Faker();
 
     @Override
-    public Stream<String> getDataStream() {
-        return Stream.generate(() -> faker.name().fullName());
+    public Stream<Customer> getDataStream() {
+        return Stream.generate(() -> Customer.newBuilder().setId(UUID.randomUUID().toString()).setName(faker.name().fullName()).build());
     }
 }

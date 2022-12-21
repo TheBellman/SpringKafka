@@ -1,6 +1,7 @@
 package net.parttimepolymath.spring.springkafka;
 
 import lombok.extern.slf4j.Slf4j;
+import net.parttimepolymath.spring.springkafka.avro.Customer;
 import net.parttimepolymath.spring.springkafka.services.CLIParser;
 import net.parttimepolymath.spring.springkafka.configuration.RuntimeConfig;
 import net.parttimepolymath.spring.springkafka.services.ConsumerService;
@@ -24,11 +25,11 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
 
     private final CLIParser parser;
     private final RuntimeConfig runtimeConfig;
-    private final ProducerService<String, String> producerService;
+    private final ProducerService<String, Customer> producerService;
     private final ConsumerService<String, String> consumerService;
 
     public SpringKafkaToyApplication(@Autowired final CLIParser parser, @Autowired final RuntimeConfig runtimeConfig,
-                                     @Autowired final ProducerService<String, String> producerService,
+                                     @Autowired final ProducerService<String, Customer> producerService,
                                      @Autowired final ConsumerService<String, String> consumerService) {
         this.parser = parser;
         this.runtimeConfig = runtimeConfig;
