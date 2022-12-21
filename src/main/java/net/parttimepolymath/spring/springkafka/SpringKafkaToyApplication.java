@@ -26,11 +26,11 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
     private final CLIParser parser;
     private final RuntimeConfig runtimeConfig;
     private final ProducerService<String, Customer> producerService;
-    private final ConsumerService<String, String> consumerService;
+    private final ConsumerService<String, Customer> consumerService;
 
     public SpringKafkaToyApplication(@Autowired final CLIParser parser, @Autowired final RuntimeConfig runtimeConfig,
                                      @Autowired final ProducerService<String, Customer> producerService,
-                                     @Autowired final ConsumerService<String, String> consumerService) {
+                                     @Autowired final ConsumerService<String, Customer> consumerService) {
         this.parser = parser;
         this.runtimeConfig = runtimeConfig;
         this.producerService = producerService;
