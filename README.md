@@ -17,7 +17,7 @@ This is simple to build, however you will need Apache Maven and Java installed.
 
 Basically:
 
-```commandline
+```shell
 $ git clone git@github.com:TheBellman/SpringKafka.git
 $ cd SpringKafka
 $ mvn package
@@ -25,7 +25,7 @@ $ mvn package
 
 all being well, after a few seconds or minutes you should see something like:
 
-```commandline
+```shell
 [INFO] --- maven-jar-plugin:3.3.0:jar (default-jar) @ springkafka ---
 [INFO] Building jar: /Users/robert/Projects/Java/SpringKafka/target/springkafka-0.0.1-SNAPSHOT.jar
 [INFO] 
@@ -108,8 +108,13 @@ The bootstrap servers defaults to `localhost:9092`, but you can override this us
 % java -jar target/springkafka-1.0-SNAPSHOT.jar --consumer --spring.kafka.bootstrap-servers=example.net:9092
 ```
 
+### Important note
+The embedded `application.properties` hardwires in some assumptions about where thngs can be found. In particular you may want to:
+ - override the location of the schema registry with `--spring.kafka.properties.schema.registry.url=https://example.com:8081`
+ - override the bootstrap server using `--spring.kafka.bootstrap-servers=example.net:9092`
+
 ## ToDo
-To be completed
+This could be made more "spring" but I'm not going to prioritise this yet.
 
 ## License
 
