@@ -35,9 +35,7 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
     }
 
     public static void main(String[] args) {
-        log.info("Application starting");
         SpringApplication.run(SpringKafkaToyApplication.class, args);
-        log.info("Application ending");
     }
 
     @Override

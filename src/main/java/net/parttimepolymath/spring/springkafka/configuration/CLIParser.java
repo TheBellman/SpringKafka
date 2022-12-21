@@ -15,7 +15,6 @@ import org.springframework.util.NumberUtils;
 @Service
 public class CLIParser {
 
-
     @Value("${default.count:1000}")
     private long defaultCount;
     private static final String help = """
