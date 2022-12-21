@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
@@ -16,7 +16,7 @@ import java.util.Objects;
  * @author Robert Hook
  * @since 2022-12-20
  */
-@Component
+@Service
 @Slf4j
 public class ConsumerImpl implements Consumer<String, String> {
     @Value("${listener.id}")

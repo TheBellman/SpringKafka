@@ -23,11 +23,11 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
     private final CLIParser parser;
     private final RuntimeConfig runtimeConfig;
     private final Producer<String, String> producer;
-    private final Consumer<String, String> consumer;
+    private final Consumer<?, ?> consumer;
 
     public SpringKafkaToyApplication(@Autowired final CLIParser parser, @Autowired final RuntimeConfig runtimeConfig,
                                      @Autowired final Producer<String, String> producer,
-                                     @Autowired final Consumer<String, String> consumer) {
+                                     @Autowired final Consumer<?, ?> consumer) {
         this.parser = parser;
         this.runtimeConfig = runtimeConfig;
         this.producer = producer;
@@ -45,8 +45,6 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
         if (!parser.parseArgs(args)) {
             return;
         }
-
-        log.info("Good arguments! will run now with {}", runtimeConfig);
 
         if (runtimeConfig.getMode() == RuntimeConfig.Mode.PRODUCER) {
             producer.execute(runtimeConfig.getCount());

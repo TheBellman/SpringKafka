@@ -27,25 +27,6 @@ import java.util.Map;
 public class KafkaConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrap;
-    @Bean
-    public ProducerFactory<String, String> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigs());
-    }
-
-    @Bean
-    public Map<String, Object> producerConfigs() {
-        Map<String, Object> props = new HashMap<>();
-        // See https://kafka.apache.org/documentation/#producerconfigs for more properties
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        return props;
-    }
-
-    @Bean
-    public KafkaTemplate<String, String> producerTemplate() {
-        return new KafkaTemplate<>(producerFactory());
-    }
 
     @Bean
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {

@@ -13,17 +13,6 @@ class KafkaConfigTest {
         instance = new KafkaConfig();
     }
 
-
-    @Test
-    void producerConfigs() {
-        assertAll("producerConfigs",
-                () -> {
-                    assertNotNull(instance.producerConfigs());
-                    assertFalse(instance.producerConfigs().isEmpty());
-                }
-        );
-    }
-
     @Test
     void consumerConfigs() {
         assertAll("consumerConfigs",
@@ -43,17 +32,5 @@ class KafkaConfigTest {
 //    @Test
 //    void kafkaListenerContainerFactory() {
 //        assertNotNull(instance.kafkaListenerContainerFactory());
-//    }
-
-    // TODO this falls over with some internal failure inside DefaultKafkaProducerFactory
-//    @Test
-//    void producerFactory() {
-//        assertNotNull(instance.producerFactory());
-//    }
-
-    // TODO this falls over with some internal failure inside DefaultKafkaProducerFactory
-//    @Test
-//    void producerTemplate() {
-//    assertNotNull(instance.producerTemplate());
 //    }
 }
