@@ -10,12 +10,21 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <name>Spring Kafka Toy</name>
     <groupId>net.parttimepolymath.spring</groupId>
     <artifactId>springkafka</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Spring Kafka Toy</name>
-    <description>Demonstration of using SpringBoot with Kafka</description>
     <packaging>jar</packaging>
+
+    <description>Demonstration of using SpringBoot with Kafka</description>
+    <url>https://github.com/TheBellman/SpringKafka</url>
+
+    <scm>
+        <url>scm:git:git@github.com:TheBellman/SpringKafka.git</url>
+        <connection>scm:git:git@github.com:TheBellman/SpringKafka.git</connection>
+        <developerConnection>scm:git:git@github.com:TheBellman/SpringKafka.git</developerConnection>
+        <tag>${project.version}</tag>
+    </scm>
 
     <repositories>
         <!-- needed to find the "standard" SerDes -->
