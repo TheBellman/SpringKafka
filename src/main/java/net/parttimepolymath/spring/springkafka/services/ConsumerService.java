@@ -23,15 +23,27 @@ public class ConsumerService<K, V> {
     private String listenerId;
     private final KafkaListenerEndpointRegistry registry;
 
+    /**
+     * primary constructor
+     * @param registry the listener endpoint registry from the runtime context
+     */
     public ConsumerService(@Autowired final KafkaListenerEndpointRegistry registry) {
         this.registry = registry;
     }
 
+    /**
+     * signal the listener to start listening.
+     */
     public void start() {
         Objects.requireNonNull(registry.getListenerContainer(listenerId)).start();
         log.info("consumer started");
     }
 
+    /**
+     * listen for events and log receipt. Note this is set to not auto start, so that we have some opportunity
+     * to control it's lifecycle.
+     * @param record the received record
+     */
     @KafkaListener(id = "${listener.id}", topics = "${topic.name}", autoStartup = "false", concurrency = "${listen.concurrency:3}")
     public void listen(ConsumerRecord<K, V> record) {
         log.info("consumed {} = {}", record.key(), record.value());
