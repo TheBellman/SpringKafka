@@ -1,4 +1,4 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
 
 /**
  * interface which allows us to abstract keys in the Producer

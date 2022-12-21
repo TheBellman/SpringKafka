@@ -1,8 +1,10 @@
 package net.parttimepolymath.spring.springkafka;
 
 import lombok.extern.slf4j.Slf4j;
-import net.parttimepolymath.spring.springkafka.configuration.CLIParser;
+import net.parttimepolymath.spring.springkafka.services.CLIParser;
 import net.parttimepolymath.spring.springkafka.configuration.RuntimeConfig;
+import net.parttimepolymath.spring.springkafka.services.ConsumerService;
+import net.parttimepolymath.spring.springkafka.services.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,22 +24,20 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
 
     private final CLIParser parser;
     private final RuntimeConfig runtimeConfig;
-    private final Producer<String, String> producer;
-    private final Consumer<String, String> consumer;
+    private final ProducerService<String, String> producerService;
+    private final ConsumerService<String, String> consumerService;
 
     public SpringKafkaToyApplication(@Autowired final CLIParser parser, @Autowired final RuntimeConfig runtimeConfig,
-                                     @Autowired final Producer<String, String> producer,
-                                     @Autowired final Consumer<String, String> consumer) {
+                                     @Autowired final ProducerService<String, String> producerService,
+                                     @Autowired final ConsumerService<String, String> consumerService) {
         this.parser = parser;
         this.runtimeConfig = runtimeConfig;
-        this.producer = producer;
-        this.consumer = consumer;
+        this.producerService = producerService;
+        this.consumerService = consumerService;
     }
 
     public static void main(String[] args) {
-        log.info("Application starting");
         SpringApplication.run(SpringKafkaToyApplication.class, args);
-        log.info("Application ending");
     }
 
     @Override
@@ -46,14 +46,12 @@ public class SpringKafkaToyApplication implements ApplicationRunner {
             return;
         }
 
-        log.info("Good arguments! will run now with {}", runtimeConfig);
-
         if (runtimeConfig.getMode() == RuntimeConfig.Mode.PRODUCER) {
-            producer.execute(runtimeConfig.getCount());
+            producerService.execute(runtimeConfig.getCount());
         }
 
         if (runtimeConfig.getMode() == RuntimeConfig.Mode.CONSUMER) {
-            consumer.start();
+            consumerService.start();
         }
     }
 }

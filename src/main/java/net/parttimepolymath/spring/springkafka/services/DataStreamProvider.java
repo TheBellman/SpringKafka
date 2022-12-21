@@ -1,4 +1,4 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
 
 import java.util.stream.Stream;
 

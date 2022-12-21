@@ -1,4 +1,6 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
+
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
@@ -7,6 +9,8 @@ import java.util.UUID;
  * @author Robert Hook
  * @since 2022-12-20
  */
+
+@Service
 public class UUIDKeyGenerator implements KeyGenerator<String> {
     @Override
     public String getKey() {

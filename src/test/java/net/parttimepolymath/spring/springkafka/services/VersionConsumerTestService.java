@@ -1,4 +1,4 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
 
 import net.parttimepolymath.spring.springkafka.configuration.Version;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class VersionConsumerTest {
+class VersionConsumerTestService {
     private VersionConsumer instance;
 
     @BeforeEach

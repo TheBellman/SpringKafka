@@ -1,7 +1,11 @@
-package net.parttimepolymath.spring.springkafka.configuration;
+package net.parttimepolymath.spring.springkafka.services;
 
+import net.parttimepolymath.spring.springkafka.configuration.ConfigurationException;
+import net.parttimepolymath.spring.springkafka.configuration.RuntimeConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.stereotype.Service;
 import org.springframework.util.NumberUtils;
 
 /**
@@ -10,8 +14,10 @@ import org.springframework.util.NumberUtils;
  * @author Robert Hook
  * @since 2022-12-20
  */
+@Service
 public class CLIParser {
 
+    @Value("${default.count:1000}")
     private long defaultCount;
     private static final String help = """
             usage:
@@ -26,11 +32,9 @@ public class CLIParser {
      * primary constructor
      *
      * @param runtimeConfig the runtime config that will be set up.
-     * @param defaultCount the default count that is used if nothing is provided
      */
-    public CLIParser(final @Autowired RuntimeConfig runtimeConfig, final long defaultCount) {
+    public CLIParser(final @Autowired RuntimeConfig runtimeConfig) {
         this.runtimeConfig = runtimeConfig;
-        this.defaultCount = defaultCount;
     }
 
     /**
@@ -83,5 +87,13 @@ public class CLIParser {
         } else {
             return defaultCount;
         }
+    }
+
+    /**
+     * override the default - only used for testing
+     * @param defaultCount the new default to use
+     */
+    public void setDefaultCount(long defaultCount) {
+        this.defaultCount = defaultCount;
     }
 }

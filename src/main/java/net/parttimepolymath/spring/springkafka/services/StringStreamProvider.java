@@ -1,6 +1,7 @@
-package net.parttimepolymath.spring.springkafka;
+package net.parttimepolymath.spring.springkafka.services;
 
 import com.github.javafaker.Faker;
+import org.springframework.stereotype.Service;
 
 import java.util.stream.Stream;
 
@@ -9,6 +10,7 @@ import java.util.stream.Stream;
  * @author Robert Hook
  * @since 2022-12-20
  */
+@Service
 public class StringStreamProvider implements DataStreamProvider<String> {
     private static final Faker faker = new Faker();
 

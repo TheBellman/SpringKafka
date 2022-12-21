@@ -1,5 +1,6 @@
-package net.parttimepolymath.spring.springkafka.configuration;
+package net.parttimepolymath.spring.springkafka.services;
 
+import net.parttimepolymath.spring.springkafka.configuration.RuntimeConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.DefaultApplicationArguments;
@@ -15,7 +16,8 @@ class CLIParserTest {
     @BeforeEach
     void setUp() {
         config = new RuntimeConfig();
-        instance = new CLIParser(config, DEFAULT_COUNT);
+        instance = new CLIParser(config);
+        instance.setDefaultCount(DEFAULT_COUNT);
     }
 
     @Test
